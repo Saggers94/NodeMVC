@@ -1,29 +1,19 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
+const express = require("express");
 
-const rootDir = require('../util/path');
+const productsController = require("../controllers/products");
+// const rootDir = require("../util/path");
 
 const router = express.Router();
-b
-const products = []; z;
 
 // /admin/add-product => GET
-router.get('/add-product', (req, res, next) => {
-  res.render('add-product', {
-    pageTitle: 'Add Product',
-    path: '/admin/add-product',
-    formsCSS: true,
-    productCSS: true,
-    activeAddProduct: true
-  });
-});
+// you shouldn't execute the function, instead you just pass the reference to the function
+router.get("/add-product", productsController.getAddProduct);
 
 // /admin/add-product => POST
-router.post('/add-product', (req, res, next) => {
-  products.push({ title: req.body.title });
-  res.redirect('/');
-});
+router.post("/add-product", productsController.postAddProduct);
 
-exports.routes = router;
-exports.products = products;
+// exports.routes = router;
+module.exports = router;
+// exports.products = products;
